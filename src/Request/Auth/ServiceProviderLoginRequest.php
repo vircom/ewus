@@ -7,7 +7,7 @@ namespace VirCom\EWUS\Request\Auth;
 use VirCom\EWUS\Enum\EWUSOperatorTypeEnum;
 use VirCom\EWUS\Enum\NHFBranchIdentifierEnum;
 
-class ServiceProviderLoginRequest extends DoctorLoginRequest
+final class ServiceProviderLoginRequest extends AbstractLoginRequest
 {
     protected EWUSOperatorTypeEnum $type;
 
@@ -20,6 +20,11 @@ class ServiceProviderLoginRequest extends DoctorLoginRequest
         parent::__construct($domain, $login, $password);
 
         $this->type = EWUSOperatorTypeEnum::SERVICE_PROVIDER();
+    }
+
+    public function getType(): EWUSOperatorTypeEnum
+    {
+        return $this->type;
     }
 
     public function getServiceProviderIdentifier(): string

@@ -7,7 +7,7 @@ namespace VirCom\EWUS\Request\Auth;
 use VirCom\EWUS\Enum\EWUSOperatorTypeEnum;
 use VirCom\EWUS\Enum\NHFBranchIdentifierEnum;
 
-class DoctorLoginRequest extends BasicLoginRequest
+final class DoctorLoginRequest extends AbstractLoginRequest
 {
     protected EWUSOperatorTypeEnum $type;
 

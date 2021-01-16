@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace VirCom\EWUS\Builder\Auth;
 
 use VirCom\EWUS\Request\Auth\BasicLoginRequest;
+use VirCom\EWUS\Request\Auth\DoctorLoginRequest;
+use VirCom\EWUS\Request\Auth\ServiceProviderLoginRequest;
 use Sabre\Xml\Writer as XmlBuilder;
 
 class LoginMessageBuilder
@@ -14,7 +16,7 @@ class LoginMessageBuilder
     ) { }
 
     public function build(
-        BasicLoginRequest $request
+        BasicLoginRequest|DoctorLoginRequest|ServiceProviderLoginRequest $request
     ): string {
         $this->xmlBuilder->openMemory();
         $this->xmlBuilder->setIndent(true);
@@ -50,6 +52,45 @@ class LoginMessageBuilder
         $this->xmlBuilder->endElement();
 
         $this->xmlBuilder->endElement();
+
+        if(
+            ($request instanceof DoctorLoginRequest)
+            || ($request instanceof ServiceProviderLoginRequest)
+        ) {
+            $this->xmlBuilder->startElement('auth:item');
+
+            $this->xmlBuilder->startElement('auth:name');
+            $this->xmlBuilder->write('type');
+            $this->xmlBuilder->endElement();
+
+            $this->xmlBuilder->startElement('auth:value');
+
+            $this->xmlBuilder->startElement('auth:stringValue');
+            $this->xmlBuilder->write($request->getType()->__toString());
+            $this->xmlBuilder->endElement();
+
+            $this->xmlBuilder->endElement();
+
+            $this->xmlBuilder->endElement();
+        }
+
+        if($request instanceof ServiceProviderLoginRequest) {
+            $this->xmlBuilder->startElement('auth:item');
+
+            $this->xmlBuilder->startElement('auth:name');
+            $this->xmlBuilder->write('idntSwd');
+            $this->xmlBuilder->endElement();
+
+            $this->xmlBuilder->startElement('auth:value');
+
+            $this->xmlBuilder->startElement('auth:stringValue');
+            $this->xmlBuilder->write($request->getServiceProviderIdentifier());
+            $this->xmlBuilder->endElement();
+
+            $this->xmlBuilder->endElement();
+
+            $this->xmlBuilder->endElement();
+        }
 
         $this->xmlBuilder->startElement('auth:item');
 
