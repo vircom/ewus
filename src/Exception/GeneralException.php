@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VirCom\EWUS\Exception;
+namespace VirCom\EWUS\V5\Exception;
 
 use Exception;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VirCom\EWUS\Response\Auth;
+namespace VirCom\EWUS\V5\Response\Auth;
 
 class LoginResponse
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VirCom\Ewus\Enum;
+namespace VirCom\EWUS\V5\Enum;
 
 use MyCLabs\Enum\Enum;
 

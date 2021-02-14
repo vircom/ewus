@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace VirCom\EWUS\Request\Auth;
+namespace VirCom\EWUS\V5\Request\Auth\Login;
 
-use VirCom\EWUS\Enum\NHFBranchIdentifierEnum;
+use VirCom\EWUS\V5\Enum\NHFBranchIdentifierEnum;
 
 abstract class AbstractLoginRequest
 {

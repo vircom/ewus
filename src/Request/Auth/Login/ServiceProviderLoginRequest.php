@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace VirCom\EWUS\Request\Auth;
+namespace VirCom\EWUS\V5\Request\Auth\Login;
 
-use VirCom\EWUS\Enum\EWUSOperatorTypeEnum;
-use VirCom\EWUS\Enum\NHFBranchIdentifierEnum;
+use VirCom\EWUS\V5\Enum\EWUSOperatorTypeEnum;
+use VirCom\EWUS\V5\Enum\NHFBranchIdentifierEnum;
 
 final class ServiceProviderLoginRequest extends AbstractLoginRequest
 {
@@ -13,9 +13,9 @@ final class ServiceProviderLoginRequest extends AbstractLoginRequest
 
     public function __construct(
         protected NHFBranchIdentifierEnum $domain,
-        protected string $serviceProviderIdentifier,
         protected string $login,
-        protected string $password
+        protected string $password,
+        protected string $identifier
     ) { 
         parent::__construct($domain, $login, $password);
 
@@ -27,8 +27,8 @@ final class ServiceProviderLoginRequest extends AbstractLoginRequest
         return $this->type;
     }
 
-    public function getServiceProviderIdentifier(): string
+    public function getIdentifier(): string
     {
-        return $this->serviceProviderIdentifier;
+        return $this->identifier;
     }
 }
